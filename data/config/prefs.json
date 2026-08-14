@@ -1,0 +1,34 @@
+{
+  "loginWallpaper": "https://images8.alphacoders.com/138/1383930.png",
+  "desktopWallpaper": "https://images8.alphacoders.com/138/1383930.png",
+  "widgets": [
+    {
+      "tagName": "taskbar-widget",
+      "sourceUrl": "/src/widgets/taskbar/taskbar.svelte",
+      "gridPosition": {
+        "col": 6,
+        "row": 7,
+        "spanCol": 6,
+        "spanRow": 1
+      }
+    }
+  ],
+  "apps": [
+    {
+      "id": "config",
+      "title": "Settings",
+      "applicationTag": "config-app",
+      "sourceUrl": "/src/apps/config/config.svelte",
+      "image": "https://picsum.photos/seed/config/200",
+      "size": { "width": 720, "height": 520 }
+    },
+    {
+      "id": "marketplace",
+      "title": "Marketplace",
+      "applicationTag": "marketplace-app",
+      "sourceUrl": "/src/apps/marketplace/marketplace.svelte",
+      "image": "https://picsum.photos/seed/marketplace/200",
+      "size": { "width": 900, "height": 650 }
+    }
+  ]
+}

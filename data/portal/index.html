@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light only">
+  <title>Mimi OS Setup</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #08111f;
+      --bg-soft: #0f1b31;
+      --card: rgba(10, 18, 33, 0.92);
+      --card-border: rgba(125, 170, 255, 0.22);
+      --text: #f4f7fb;
+      --muted: #a8b6d0;
+      --primary: #4cc9f0;
+      --primary-strong: #2aa6d6;
+      --primary-glow: rgba(76, 201, 240, 0.32);
+      --field: rgba(255, 255, 255, 0.06);
+      --field-border: rgba(255, 255, 255, 0.14);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.36);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      min-height: 100%;
+      margin: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(76, 201, 240, 0.22), transparent 38%),
+        radial-gradient(circle at bottom right, rgba(66, 133, 244, 0.22), transparent 32%),
+        linear-gradient(160deg, var(--bg), var(--bg-soft));
+    }
+
+    .panel {
+      width: min(100%, 560px);
+      padding: 28px;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(14, 24, 44, 0.98), var(--card));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      margin-bottom: 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(76, 201, 240, 0.24);
+      background: rgba(76, 201, 240, 0.08);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 0.98rem;
+    }
+
+    form {
+      margin-top: 24px;
+      display: grid;
+      gap: 16px;
+    }
+
+    label {
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    input[type='text'],
+    input[type='password'] {
+      width: 100%;
+      padding: 15px 16px;
+      border-radius: 16px;
+      border: 1px solid var(--field-border);
+      background: var(--field);
+      color: var(--text);
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    input::placeholder {
+      color: #7f8ba8;
+    }
+
+    input:focus,
+    input:focus-visible,
+    input[type='submit']:focus,
+    input[type='submit']:focus-visible {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px var(--primary-glow);
+    }
+
+    .actions {
+      display: grid;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    input[type='submit'] {
+      appearance: none;
+      border: 0;
+      border-radius: 16px;
+      padding: 15px 18px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+      color: #04111d;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 16px 30px rgba(42, 166, 214, 0.28);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+    }
+
+    input[type='submit']:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.04);
+      box-shadow: 0 18px 34px rgba(42, 166, 214, 0.34);
+    }
+
+    input[type='submit']:active {
+      transform: translateY(0);
+    }
+
+    .hint {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    .divider {
+      height: 2px;
+      margin: 4px 0 2px;
+      background: var(--primary-glow);
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 14px;
+        place-items: stretch;
+      }
+
+      .panel {
+        width: 100%;
+        padding: 20px;
+        border-radius: 20px;
+      }
+
+      h1 {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="panel">
+    <div class="eyebrow">Access Point</div>
+    <h1>Mimi OS setup</h1>
+    <p>Connect your device to Wi-Fi from this portal, then save the configuration and reboot.</p>
+    <form method="POST" action="/save">
+
+      <label>
+        Device name
+        <input name="device_name" type="text" placeholder="Optional Device name" autocomplete="off" autocapitalize="none" spellcheck="false">
+      </label>
+      <div class="divider"></div>
+
+      <label>
+        SSID
+        <input name="ssid" type="text" placeholder="Your network name" autocomplete="off" autocapitalize="none" spellcheck="false">
+      </label>
+      <label>
+        Password
+        <input name="pass" type="password" placeholder="Wi-Fi password" autocomplete="off">
+      </label>
+      <label>
+        IP
+        <input name="ip" type="text" placeholder="Optional static IP" inputmode="decimal" autocomplete="off">
+      </label>
+      <div class="divider"></div>
+      <label>
+        Username
+        <input name="username" type="text" placeholder="Optional username" autocomplete="off" autocapitalize="none" spellcheck="false">
+      </label>
+      <label>
+        Password
+        <input name="userpass" type="password" placeholder="Optional password" autocomplete="off">
+      </label>
+
+      <div class="actions">
+        <input type="submit" value="Save and reboot">
+      </div>
+    </form>
+    <div class="hint">If the page looks tight on mobile, rotate the phone or use a desktop browser for the first setup.</div>
+  </main>
+</body>
+</html>
